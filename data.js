@@ -17,6 +17,11 @@
                 對應上面 idols 裡的 id，例如 ["milklove"]
                 或 ["milklove","namtanfilm"]
      - emoji：卡片上顯示的小圖示，隨意換，例如 🍜🍳🥭☕🦐🌶️
+                （如果有填 photo，emoji 就不會顯示，兩個選一個填就好）
+     - photo：（選填）照片網址，填了就會取代 emoji 顯示成真的照片。
+                建議把照片先上傳到 Imgur（imgur.com，免帳號也能上傳）
+                或 Google 相簿「取得共用連結」，再把那個網址貼進來。
+                不填這欄的話，卡片就會維持顯示 emoji。
      - desc：簡短介紹
      - visitTime：到訪時間或場合
      - source：情報來源連結（IG限動截圖網址、Vlog連結、討論串等）
@@ -51,16 +56,18 @@ const idols = [
 
 const restaurants = [
 
-  {
-    id: 1,
-    name: "Vanich House",
-    city: "曼谷",
-    lat: 13.734977539894306, lng: 100.51155088733033,
-    idolIds: ["emibonnie"],
-    emoji: "🧋",
-    desc: "VLOG OF US [Part 1]",
-    visitTime: "到訪時間或場合",
-    source: "https://www.youtube.com/watch?v=iuZ8Ebi9Plg&t=495s",
-  },
+  // ↓↓↓ 複製這一整塊來新增一筆新的打卡點，貼在這行下面 ↓↓↓
+  // {
+  //   id: 1,
+  //   name: "店名",
+  //   city: "曼谷",
+  //   lat: 13.7524, lng: 100.5019,
+  //   idolIds: ["milklove"],
+  //   emoji: "🍜",
+  //   photo: "",   // 選填，貼照片網址就會取代 emoji
+  //   desc: "簡短介紹，例如：哪次直播/限動出現、有什麼招牌菜。",
+  //   visitTime: "到訪時間或場合",
+  //   source: "情報來源連結",
+  // },
 
 ];
