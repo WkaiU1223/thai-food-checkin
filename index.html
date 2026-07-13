@@ -50,7 +50,46 @@
     position:relative;
     z-index:5;
     box-shadow: 4px 0 18px rgba(0,0,0,0.18);
+    transition: width .28s cubic-bezier(.4,0,.2,1), min-width .28s cubic-bezier(.4,0,.2,1), padding .28s ease;
+    overflow:hidden;
   }
+  .sidebar.collapsed{
+    width:0;
+    min-width:0;
+    padding-left:0;
+    padding-right:0;
+    box-shadow:none;
+  }
+  .sidebar-inner{
+    width:260px; /* 固定內容寬度，收合時外層變窄但內容不擠壓變形 */
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    min-height:0;
+  }
+  .sidebar-toggle{
+    position:absolute;
+    top:22px;
+    left:100%;
+    width:26px;
+    height:44px;
+    background:var(--teal-deep);
+    color:var(--gold-soft);
+    border:none;
+    border-radius:0 10px 10px 0;
+    cursor:pointer;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:2px 2px 10px rgba(0,0,0,0.18);
+    font-size:13px;
+    transition:left .28s cubic-bezier(.4,0,.2,1);
+  }
+  .sidebar-toggle:hover{ background:var(--teal-mid); }
+  .sidebar.collapsed .sidebar-toggle{ left:0; }
+  .sidebar-toggle svg{ transition:transform .28s ease; }
+  .sidebar.collapsed .sidebar-toggle svg{ transform:rotate(180deg); }
   .brand{
     display:flex;
     align-items:baseline;
@@ -371,6 +410,8 @@
 
   @media (max-width:760px){
     .sidebar{ width:220px; min-width:220px; padding:18px 14px 14px;}
+    .sidebar.collapsed{ width:0; min-width:0; padding-left:0; padding-right:0; }
+    .sidebar-inner{ width:200px; }
     .info-card{ width:100%; max-width:100%; }
   }
 </style>
@@ -379,22 +420,27 @@
 
 <div class="app">
   <!-- ================= SIDEBAR ================= -->
-  <aside class="sidebar">
-    <div class="brand">
-      <span class="brand-mark">泰・打卡</span>
-    </div>
-    <div class="brand-sub">Idol Food Passport</div>
-    <div class="brand-tag">整理 CP／偶像去過的泰國餐廳，追星順便認識泰國，也留給一起追的粉絲。</div>
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" title="收起／展開側欄" aria-label="收起／展開側欄">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="sidebar-inner">
+      <div class="brand">
+        <span class="brand-mark">泰・打卡</span>
+      </div>
+      <div class="brand-sub">Idol Food Passport</div>
+      <div class="brand-tag">整理 CP／偶像去過的泰國餐廳，追星順便認識泰國，也留給一起追的粉絲。</div>
 
-    <div class="section-label">選擇偶像／CP</div>
-    <div class="idol-list" id="idolList"></div>
+      <div class="section-label">選擇偶像／CP</div>
+      <div class="idol-list" id="idolList"></div>
 
-    <div class="section-label">城市</div>
-    <div class="city-filter" id="cityFilter"></div>
+      <div class="section-label">城市</div>
+      <div class="city-filter" id="cityFilter"></div>
 
-    <div class="stamp-count">
-      目前顯示 <b id="stampCount">0</b> 個打卡點
-      <div style="margin-top:6px;">點地圖上的護照章圖釘看店家資訊，全部資料都可以之後自己在資料裡新增或修改。</div>
+      <div class="stamp-count">
+        目前顯示 <b id="stampCount">0</b> 個打卡點
+        <div style="margin-top:6px;">點地圖上的護照章圖釘看店家資訊，全部資料都可以之後自己在資料裡新增或修改。</div>
+      </div>
     </div>
   </aside>
 
@@ -406,6 +452,7 @@
       <div class="search-box">🔍 搜尋店名 / 地區（示範用，可再接真實搜尋）</div>
       <div class="legend" id="legend"></div>
     </div>
+
 
     <div class="empty-hint" id="emptyHint" style="display:none;">這個組合目前還沒有打卡資料，快去蒐集情報吧！</div>
 
@@ -555,6 +602,16 @@ function renderPins(){
 }
 
 renderPins();
+
+// ---- sidebar collapse/expand ----
+const sidebarEl = document.getElementById("sidebar");
+const sidebarToggleBtn = document.getElementById("sidebarToggle");
+sidebarToggleBtn.addEventListener("click", ()=>{
+  sidebarEl.classList.toggle("collapsed");
+  // 側欄寬度變化是漸層動畫，動畫跑完後要通知 Leaflet 重新計算地圖尺寸，
+  // 不然地圖圖磚不會補滿新空出來的空間。
+  setTimeout(()=>{ map.invalidateSize(); }, 300);
+});
 </script>
 </body>
 </html>
