@@ -312,6 +312,8 @@
   .card-photo{
     height:160px;
     background:linear-gradient(135deg,var(--gold-soft),var(--stamp-red));
+    background-size:cover;
+    background-position:center;
     position:relative;
     display:flex;
     align-items:center;
@@ -319,6 +321,12 @@
     flex-shrink:0;
   }
   .card-photo-emoji{ font-size:52px; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.15)); }
+  .card-photo-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
   .card-close{
     position:absolute; top:12px; right:12px;
     width:30px;height:30px;
@@ -461,8 +469,9 @@
 
     <!-- ================= INFO CARD ================= -->
     <div class="info-card" id="infoCard">
-      <div class="card-photo">
+      <div class="card-photo" id="cardPhotoWrap">
         <button class="card-close" id="cardClose">✕</button>
+        <img class="card-photo-img" id="cardPhotoImg" style="display:none;" alt="">
         <div class="card-photo-emoji" id="cardEmoji">🍜</div>
       </div>
       <div class="card-body">
@@ -564,7 +573,18 @@ function makeIcon(colors){
 }
 
 function openCard(r){
-  document.getElementById("cardEmoji").textContent = r.emoji;
+  const emojiEl = document.getElementById("cardEmoji");
+  const imgEl = document.getElementById("cardPhotoImg");
+  if (r.photo) {
+    imgEl.src = r.photo;
+    imgEl.style.display = "block";
+    emojiEl.style.display = "none";
+  } else {
+    imgEl.style.display = "none";
+    imgEl.removeAttribute("src");
+    emojiEl.style.display = "flex";
+    emojiEl.textContent = r.emoji;
+  }
   document.getElementById("cardCity").textContent = r.city;
   document.getElementById("cardTitle").textContent = r.name;
   document.getElementById("cardDesc").textContent = r.desc;
