@@ -49,19 +49,16 @@ const idols = [
   { id: "kaojane",       name: "KaoJane",       color: "#7a6a2f" },
 ];
 
-const restaurants = [
+const restaurants = [13.734977539894306, 100.51155088733033
 
-  // ↓↓↓ 複製這一整塊來新增一筆新的打卡點，貼在這行下面 ↓↓↓
-  // {
-  //   id: 1,
-  //   name: "店名",
-  //   city: "曼谷",
-  //   lat: 13.7524, lng: 100.5019,
-  //   idolIds: ["milklove"],
-  //   emoji: "🍜",
-  //   desc: "簡短介紹，例如：哪次直播/限動出現、有什麼招牌菜。",
-  //   visitTime: "到訪時間或場合",
-  //   source: "情報來源連結",
-  // },
-
-];
+{
+  id: 1,
+  name: "店名",
+  city: "曼谷",
+  lat: 13.7524, lng: 100.5019,
+  idolIds: ["EmiBonnie"],
+  emoji: "🍜",
+  desc: "VLOG OF US [Part 1] ",
+  visitTime: "到訪時間或場合",
+  source: "https://www.youtube.com/watch?v=iuZ8Ebi9Plg&t=495s",
+}
