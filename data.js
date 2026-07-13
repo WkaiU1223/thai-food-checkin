@@ -3,113 +3,65 @@
    以後新增/修改店家，只需要編輯這個檔案，不用碰 index.html。
 
    idols：左側選單會顯示的偶像/CP。
-     - id：自己取一個英文代號（不能重複），restaurants 要用這個 id 對應
+     - id：英文代號（不能重複），restaurants 要用這個 id 對應
      - name：顯示名稱
      - color：這位偶像/CP 的代表色（地圖圖釘顏色），用 #xxxxxx 格式
 
-   restaurants：每一筆是一個打卡點。
+   restaurants：每一筆是一個打卡點，新增時直接複製最下面的
+   「複製這一整塊來新增」範本，貼上、填好資料即可。
      - id：不能重複的數字，新增時用下一個號碼就好
      - name / city：店名 / 城市
      - lat / lng：座標。在 Google 地圖上對著店家點右鍵 →
-                  選「這是哪裡」或看網址列，就會看到經緯度數字
+                  選「這是哪裡」，或看網址列的數字
      - idolIds：這間店是誰去過的，可以填一個或多個，
-                對應上面 idols 裡的 id
-     - emoji：卡片上顯示的小圖示，隨意換
+                對應上面 idols 裡的 id，例如 ["milklove"]
+                或 ["milklove","namtanfilm"]
+     - emoji：卡片上顯示的小圖示，隨意換，例如 🍜🍳🥭☕🦐🌶️
      - desc：簡短介紹
      - visitTime：到訪時間或場合
      - source：情報來源連結（IG限動截圖網址、Vlog連結、討論串等）
                 ⚠️ 務必填有根據的來源，不要憑印象亂填
 
-   目前下面是「示範假資料」，正式使用前請整批換成
-   你自己查證過的真實情報。
+   目前 restaurants 是空的，網站打開會顯示「這個組合目前
+   還沒有打卡資料」，這是正常的，新增第一筆之後就會出現。
    ========================================================= */
 
 const idols = [
-  { id: "momo",              name: "MOMO",               color: "#e8a33d" },
-  { id: "milklove",          name: "MilkLove",            color: "#c1440e" },
-  { id: "namtanfilm",        name: "NamtanFilm",          color: "#0d4f45" },
-  { id: "emibonnie",         name: "EmiBonnie",           color: "#b5482a" },
-  { id: "viewmim",           name: "ViewMim",             color: "#2f6f4e" },
-  { id: "janjingjing",       name: "JanJingjing",         color: "#a3405a" },
-  { id: "junemewnich",       name: "JuneMewnich",         color: "#d98c3f" },
-  { id: "kapookciize",       name: "KapookCiize",         color: "#4a6fa5" },
-  { id: "pahnfondlmsy",      name: "PahnFondLMSY",        color: "#8e4585" },
-  { id: "lillybelle",        name: "LillyBelle",          color: "#cf8b2f" },
-  { id: "nilenamwanlingorm", name: "NileNamwanLingOrm",   color: "#3f7d6b" },
-  { id: "lenamiu",           name: "LenaMiu",             color: "#9c2f2f" },
-  { id: "oombamginjay",      name: "OomBamGinJay",        color: "#6b8e3f" },
-  { id: "applemim",          name: "AppleMim",            color: "#b0562f" },
-  { id: "mewrenee",          name: "MewRenee",            color: "#35618f" },
-  { id: "englot",            name: "EngLot",              color: "#d9633f" },
-  { id: "freenbecky",        name: "FreenBecky",          color: "#6f4e37" },
-  { id: "kaojane",           name: "KaoJane",             color: "#7a6a2f" },
+  { id: "momo",          name: "MOMO",          color: "#e8a33d" },
+  { id: "namtanfilm",    name: "NamtanFilm",    color: "#0d4f45" },
+  { id: "emibonnie",     name: "EmiBonnie",     color: "#b5482a" },
+  { id: "viewmim",       name: "ViewMim",       color: "#2f6f4e" },
+  { id: "janjingjing",   name: "JanJingjing",   color: "#a3405a" },
+  { id: "junemewnich",   name: "JuneMewnich",   color: "#d98c3f" },
+  { id: "kapookciize",   name: "KapookCiize",   color: "#4a6fa5" },
+  { id: "pahnfond",      name: "PahnFond",      color: "#8e4585" },
+  { id: "lmsy",          name: "LMSY",          color: "#b06fa0" },
+  { id: "lillybelle",    name: "LillyBelle",    color: "#cf8b2f" },
+  { id: "nilenamwan",    name: "NileNamwan",    color: "#3f7d6b" },
+  { id: "lingorm",       name: "LingOrm",       color: "#5a9c8a" },
+  { id: "lenamiu",       name: "LenaMiu",       color: "#9c2f2f" },
+  { id: "oombam",        name: "OomBam",        color: "#6b8e3f" },
+  { id: "ginjay",        name: "GinJay",        color: "#8fae5f" },
+  { id: "applemim",      name: "AppleMim",      color: "#b0562f" },
+  { id: "mewrenee",      name: "MewRenee",      color: "#35618f" },
+  { id: "englot",        name: "EngLot",        color: "#d9633f" },
+  { id: "freenbecky",    name: "FreenBecky",    color: "#6f4e37" },
+  { id: "kaojane",       name: "KaoJane",       color: "#7a6a2f" },
 ];
 
 const restaurants = [
-  {
-    id: 1,
-    name: "示範店家：Jay Fai 街頭米其林一星",
-    city: "曼谷",
-    lat: 13.7524, lng: 100.5019,
-    idolIds: ["momo"],
-    emoji: "🍳",
-    desc: "示範資料：據傳曾在限動出現的街邊熱炒名店，以蟹肉蛋捲聞名，通常需要排隊或提前訂位。",
-    visitTime: "2024 年某次泰國行（示範）",
-    source: "https://www.google.com/search?q=Jay+Fai",
-  },
-  {
-    id: 2,
-    name: "示範店家：Thipsamai 老字號泰式炒河粉",
-    city: "曼谷",
-    lat: 13.7522, lng: 100.5016,
-    idolIds: ["momo", "milklove"],
-    emoji: "🍜",
-    desc: "示範資料：曼谷經典泰式炒河粉創始店之一，招牌是包蛋皮的古早味 Pad Thai。",
-    visitTime: "示範時間",
-    source: "https://www.google.com/search?q=Thipsamai",
-  },
-  {
-    id: 3,
-    name: "示範店家：Chatuchak 週末市集小吃區",
-    city: "曼谷",
-    lat: 13.7998, lng: 100.5501,
-    idolIds: ["namtanfilm"],
-    emoji: "🥭",
-    desc: "示範資料：假日限定超大型市集，適合放進『順路巡禮』路線，芒果糯米飯攤位密集。",
-    visitTime: "示範時間",
-    source: "https://www.google.com/search?q=Chatuchak+Weekend+Market",
-  },
-  {
-    id: 4,
-    name: "示範店家：Warorot Market 清邁在地市場",
-    city: "清邁",
-    lat: 18.7883, lng: 98.9931,
-    idolIds: ["momo", "namtanfilm"],
-    emoji: "🌶️",
-    desc: "示範資料：清邁在地人愛去的傳統市場，可以感受非觀光區的日常泰北美食。",
-    visitTime: "示範時間",
-    source: "https://www.google.com/search?q=Warorot+Market",
-  },
-  {
-    id: 5,
-    name: "示範店家：Nimman 區質感咖啡廳",
-    city: "清邁",
-    lat: 18.7961, lng: 98.9682,
-    idolIds: ["milklove"],
-    emoji: "☕",
-    desc: "示範資料：清邁文青區的人氣咖啡廳，適合安排成半天悠閒行程的中繼點。",
-    visitTime: "示範時間",
-    source: "https://www.google.com/search?q=Nimman+cafe+Chiang+Mai",
-  },
-  {
-    id: 6,
-    name: "示範店家：Phuket Old Town 街邊小吃",
-    city: "普吉島",
-    lat: 7.8853, lng: 98.3903,
-    idolIds: ["momo"],
-    emoji: "🦐",
-    desc: "示範資料：普吉舊城區葡萄牙風建築街，週日夜市有大量海鮮與甜點攤位。",
-    visitTime: "示範時間",
-    source: "https://www.google.com/search?q=Phuket+Old+Town",
-  },
+
+  // ↓↓↓ 複製這一整塊來新增一筆新的打卡點，貼在這行下面 ↓↓↓
+  // {
+  //   id: 1,
+  //   name: "店名",
+  //   city: "曼谷",
+  //   lat: 13.7524, lng: 100.5019,
+  //   idolIds: ["milklove"],
+  //   emoji: "🍜",
+  //   desc: "簡短介紹，例如：哪次直播/限動出現、有什麼招牌菜。",
+  //   visitTime: "到訪時間或場合",
+  //   source: "情報來源連結",
+  // },
+
 ];
