@@ -68,4 +68,15 @@ const restaurants = [
   source: "https://www.youtube.com/watch?v=iuZ8Ebi9Plg&t=495s",
 },
 
+{
+  id: 2,
+  name: "古籠包",
+  city: "曼谷",
+  lat: 13.738199914650925, 100.50802452642112,
+  idolIds: ["emibonnie"],
+  emoji: "🧋",
+  photo: "https://raw.githubusercontent.com/WkaiU1223/thai-food-checkin/main/vanich-house.jpg",
+  desc: "VLOG OF US [Part 2]",
+  source: "https://www.youtube.com/watch?v=WI5Mcuvwf34",
+},
 ];
