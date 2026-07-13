@@ -36,6 +36,7 @@
     display:flex;
     height:100vh;
     width:100vw;
+    position:relative;
   }
 
   /* ---------- Sidebar ---------- */
@@ -70,7 +71,7 @@
   .sidebar-toggle{
     position:absolute;
     top:22px;
-    left:100%;
+    left:300px;
     width:26px;
     height:44px;
     background:var(--teal-deep);
@@ -87,9 +88,9 @@
     transition:left .28s cubic-bezier(.4,0,.2,1);
   }
   .sidebar-toggle:hover{ background:var(--teal-mid); }
-  .sidebar.collapsed .sidebar-toggle{ left:0; }
+  #sidebar.collapsed + .sidebar-toggle{ left:0; }
   .sidebar-toggle svg{ transition:transform .28s ease; }
-  .sidebar.collapsed .sidebar-toggle svg{ transform:rotate(180deg); }
+  #sidebar.collapsed + .sidebar-toggle svg{ transform:rotate(180deg); }
   .brand{
     display:flex;
     align-items:baseline;
@@ -412,6 +413,7 @@
     .sidebar{ width:220px; min-width:220px; padding:18px 14px 14px;}
     .sidebar.collapsed{ width:0; min-width:0; padding-left:0; padding-right:0; }
     .sidebar-inner{ width:200px; }
+    .sidebar-toggle{ left:220px; }
     .info-card{ width:100%; max-width:100%; }
   }
 </style>
@@ -421,9 +423,6 @@
 <div class="app">
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar" id="sidebar">
-    <button class="sidebar-toggle" id="sidebarToggle" title="收起／展開側欄" aria-label="收起／展開側欄">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
     <div class="sidebar-inner">
       <div class="brand">
         <span class="brand-mark">泰・打卡</span>
@@ -443,6 +442,10 @@
       </div>
     </div>
   </aside>
+
+  <button class="sidebar-toggle" id="sidebarToggle" title="收起／展開側欄" aria-label="收起／展開側欄">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  </button>
 
   <!-- ================= MAP ================= -->
   <div class="map-wrap">
