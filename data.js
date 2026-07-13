@@ -49,16 +49,18 @@ const idols = [
   { id: "kaojane",       name: "KaoJane",       color: "#7a6a2f" },
 ];
 
-const restaurants = [13.734977539894306, 100.51155088733033
+const restaurants = [
 
-{
-  id: 1,
-  name: "店名",
-  city: "曼谷",
-  lat: 13.7524, lng: 100.5019,
-  idolIds: ["EmiBonnie"],
-  emoji: "🍜",
-  desc: "VLOG OF US [Part 1] ",
-  visitTime: "到訪時間或場合",
-  source: "https://www.youtube.com/watch?v=iuZ8Ebi9Plg&t=495s",
-}
+  {
+    id: 1,
+    name: "Vanich House",
+    city: "曼谷",
+    lat: 13.734977539894306, lng: 100.51155088733033,
+    idolIds: ["emibonnie"],
+    emoji: "🧋",
+    desc: "VLOG OF US [Part 1]",
+    visitTime: "到訪時間或場合",
+    source: "https://www.youtube.com/watch?v=iuZ8Ebi9Plg&t=495s",
+  },
+
+];
