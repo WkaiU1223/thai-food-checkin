@@ -69,21 +69,21 @@
     min-height:0;
   }
   .sidebar-toggle{
-    position:absolute;
+    position:fixed;
     top:22px;
     left:300px;
-    width:26px;
-    height:44px;
+    width:28px;
+    height:48px;
     background:var(--teal-deep);
     color:var(--gold-soft);
     border:none;
     border-radius:0 10px 10px 0;
     cursor:pointer;
-    z-index:20;
+    z-index:5000;
     display:flex;
     align-items:center;
     justify-content:center;
-    box-shadow:2px 2px 10px rgba(0,0,0,0.18);
+    box-shadow:2px 2px 10px rgba(0,0,0,0.25);
     font-size:13px;
     transition:left .28s cubic-bezier(.4,0,.2,1);
   }
@@ -609,6 +609,13 @@ renderPins();
 // ---- sidebar collapse/expand ----
 const sidebarEl = document.getElementById("sidebar");
 const sidebarToggleBtn = document.getElementById("sidebarToggle");
+
+// 手機（小螢幕）預設把側欄收起來，一打開就是全螢幕地圖，
+// 要看偶像/城市篩選時再點按鈕展開。
+if (window.innerWidth <= 760) {
+  sidebarEl.classList.add("collapsed");
+}
+
 sidebarToggleBtn.addEventListener("click", ()=>{
   sidebarEl.classList.toggle("collapsed");
   // 側欄寬度變化是漸層動畫，動畫跑完後要通知 Leaflet 重新計算地圖尺寸，
