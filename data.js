@@ -63,7 +63,7 @@ const restaurants = [
   lat: 13.734977539894306, lng: 100.51155088733033,
   idolIds: ["emibonnie"],
   emoji: "🧋",
-  photo: "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmj3E-c4xDhTSWK5Mew67V...",
+  photo: "photo: "https://raw.githubusercontent.com/WkaiU1223/thai-food-checkin/main/vanich-house.jpg",",
   desc: "VLOG OF US [Part 1]",
   source: "https://www.youtube.com/watch?v=iuZ8Ebi9Plg&t=495s",
 },
