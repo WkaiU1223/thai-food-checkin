@@ -23,7 +23,7 @@
                 或 Google 相簿「取得共用連結」，再把那個網址貼進來。
                 不填這欄的話，卡片就會維持顯示 emoji。
      - desc：簡短介紹
-     - visitTime：同款點餐
+     - visitTime：到訪時間或場合
      - source：情報來源連結（IG限動截圖網址、Vlog連結、討論串等）
                 ⚠️ 務必填有根據的來源，不要憑印象亂填
 
@@ -56,16 +56,18 @@ const idols = [
 
 const restaurants = [
 
-{
-  id: 1,
-  name: "Vanich House",
-  city: "曼谷",
-  lat: 13.734977539894306, lng: 100.51155088733033,
-  idolIds: ["emibonnie"],
-  emoji: "🧋",
-  photo: "photo: "https://raw.githubusercontent.com/WkaiU1223/thai-food-checkin/main/vanich-house.jpg",",
-  desc: "VLOG OF US [Part 1]",
-  source: "https://www.youtube.com/watch?v=iuZ8Ebi9Plg&t=495s",
-},
+  // ↓↓↓ 複製這一整塊來新增一筆新的打卡點，貼在這行下面 ↓↓↓
+  // {
+  //   id: 1,
+  //   name: "店名",
+  //   city: "曼谷",
+  //   lat: 13.7524, lng: 100.5019,
+  //   idolIds: ["milklove"],
+  //   emoji: "🍜",
+  //   photo: "",   // 選填，貼照片網址就會取代 emoji
+  //   desc: "簡短介紹，例如：哪次直播/限動出現、有什麼招牌菜。",
+  //   visitTime: "到訪時間或場合",
+  //   source: "情報來源連結",
+  // },
 
 ];
